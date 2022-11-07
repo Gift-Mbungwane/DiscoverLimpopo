@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {View, Text, SafeAreaView, ImageBackground, Image, Button, TouchableOpacity} from 'react-native';
-import Notification from '../Components/Notification';
+import Notification from '../../Components/Notification';
 
 export default function Onboarding({navigation}) {
 

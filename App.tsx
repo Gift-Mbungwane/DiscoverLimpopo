@@ -7,7 +7,14 @@
  *
  * @format
  */
+<<<<<<< Updated upstream
 import React, {} from 'react';
+=======
+import React , {useState, useEffect} from 'react';
+import { NativeBaseProvider, Box } from "native-base";
+
+//Navigation
+>>>>>>> Stashed changes
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -36,7 +43,36 @@ import Onboarding2 from './src/pages/Onboarding/Onboarding2';
 import Onboarding3 from './src/pages/Onboarding/Onboarding3';
 import Signin from './src/pages/SignIn/Signin';
 import Signup from './src/pages/SignUp/Signup';
+<<<<<<< Updated upstream
 import Home from './src/pages/Home/Home';
+=======
+import HOME from './src/pages/Home/Home';
+import MAGAZINES from './src/pages/Magazines/Magazines';
+import MAGAZINESDETAILS from './src/pages/Magazines/MagazineDetails';
+import ACCOMODATION from './src/pages/Accomodation/Accomodation';
+import ACCOMODATIONDETAILS from './src/pages/Accomodation/AccomodationDetails';
+import BOOKING from './src/pages/Booking/Bookings';
+import BOOKINGDETAILS from './src/pages/Booking/BookingDetails';
+import RESTAURANTS from './src/pages/Restaurants/Restaurants';
+import RESTAURANTDETAILS from './src/pages/Restaurants/RestaurantDetails';
+import ProfileDetails from './src/pages/Account/EditProfileDetails';
+import SPECIALPACKAGE from './src/pages/Specials/SpecialPackages';
+import SPECIALPACKAGEDETAILS from './src/pages/Specials/SpecialPackageDetails';
+import ACCOUNT from './src/pages/Account/Profile';
+
+import Icon from 'react-native-vector-icons/Foundation';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+
+//firebase
+import auth from '@react-native-firebase/auth';
+import CustomSidebarMenu from './src/Components/navigation/CustomSidebarMenu';
+import Profile from './src/pages/Account/Profile';
+import AccomodationDetails from './src/pages/Accomodation/AccomodationDetails';
+
+>>>>>>> Stashed changes
 
 
 const Stack = createNativeStackNavigator();
@@ -44,6 +80,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App () {
 
+<<<<<<< Updated upstream
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -51,6 +88,233 @@ export default function App () {
         headerShown:false,
        })}/>
        <Stack.Screen name='Onboarding2' component={Onboarding2} options={({navigation, route}) => ({
+=======
+  const [user, setUser] = React.useState("");
+
+  const Account = () => {
+    return(
+    <Stack.Navigator screenOptions={({navigation, route}) => ({
+      headerShown:false
+    })}>
+      <Stack.Screen name='Account' component={Profile}/>
+      <Stack.Screen name='Profile Details' component={ProfileDetails}/>
+    </Stack.Navigator>
+    )  
+}
+
+  const Home = () => {
+      return(
+    <Stack.Navigator screenOptions={({navigation, route}) => ({
+      headerShown:false
+    })}>
+      <Stack.Screen name='Home' component={HOME} />
+      <Stack.Screen name='Accomodation' component={ACCOMODATION}/>
+      <Stack.Screen name='AccomodationDetails' component={AccomodationDetails}/>
+      <Stack.Screen name='Restaurants' component={RESTAURANTS} />
+      <Stack.Screen name='RestaurantDetails' component={RESTAURANTDETAILS}/>
+      <Stack.Screen name='Magazine' component={MAGAZINES}/>
+      <Stack.Screen name='MagazineDetails' component={MAGAZINESDETAILS}/>
+      {/* <Stack.Screen name='SpecialPackages' component={SPECIALPACKAGE}/>
+      <Stack.Screen name='SpecialPackagesDetails' component={SPECIALPACKAGEDETAILS}/> */}
+    </Stack.Navigator>
+      )
+  }
+
+  const Booking = () => {
+    return(
+    <Stack.Navigator screenOptions={({navigation, route}) => ({
+      headerShown:false
+    })}>
+      <Stack.Screen name='Booking' component={BOOKING}/>
+      <Stack.Screen name='BookingDetails' component={BOOKINGDETAILS}/>
+    </Stack.Navigator>
+    )
+  }
+
+  const Accomodation = () => {
+    return(
+    <Stack.Navigator screenOptions={({navigation, route}) => ({
+      headerShown:false
+    })}>
+      <Stack.Screen name='Accomodation' component={ACCOMODATION} screenOptions={({navigation, route}) => ({
+      headerShown:false
+    })} />
+      <Stack.Screen name='AccomodationDetails' component={ACCOMODATIONDETAILS} screenOptions={({navigation, route}) => ({
+      headerShown:false
+    })}/>
+    </Stack.Navigator>
+    )
+  }
+
+  const Special = () => {
+    return(
+    <Stack.Navigator screenOptions={(props: {navigation:any, route:any}) => ({
+      headerShown:false
+    })} >
+      <Stack.Screen name='SpecialPackages' component={SPECIALPACKAGE} user={user}/>
+      <Stack.Screen name='SpecialPackagesDetails' component={SPECIALPACKAGEDETAILS} user={user}/>
+    </Stack.Navigator>
+    )
+  }
+
+  const toastConfig = {
+    success: (props: JSX.IntrinsicAttributes & BaseToastProps) => (
+      <BaseToast
+        {...props}
+        style={{ borderLeftColor: 'green' }}
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+        text1Style={{fontSize: 17, fontWeight: '400', fontFamily:"Plus Jakarta Sans"}}
+        text2Style={{fontSize: 13, color: 'green',fontFamily:"Plus Jakarta Sans"}}
+      />
+    ),
+    error: (props: JSX.IntrinsicAttributes & BaseToastProps) => (
+      <ErrorToast
+        {...props}
+        text1Style={{
+          fontSize: 17,
+        }}
+        text2Style={{fontSize: 13, color: 'red', fontFamily:"Plus Jakarta Sans"}}
+      />
+    )
+  };
+
+
+  useEffect(() => {
+    const fetch = () => { auth().onAuthStateChanged((userCredential) => {
+            const user = userCredential?.uid;
+            if(user) {
+            setUser(user);
+            } else {
+              setUser("");
+            }
+        });
+    }; 
+  fetch();
+  }, [])
+  
+  return (
+    <>
+    <NavigationContainer >
+      <Drawer.Navigator initialRouteName="Singup" 
+      
+       defaultScreenOptions={{
+        drawerActiveTintColor: "#FFFFFF",
+        drawerInactiveTintColor: "#000000",
+         drawerItemStyle: {marginVertical: 5, borderRadius:30 },
+         drawerInactiveBackgroundColor:'rgba(239, 172, 50, 0.05)',
+         drawerActiveBackgroundColor: 'rgb(239, 172, 50)',
+         
+       }}
+       screenOptions={{
+      drawerActiveTintColor: "#FFFFFF",
+      drawerInactiveTintColor: "#000000",
+      overlayColor:"transparent",
+      drawerInactiveBackgroundColor:'rgba(239, 172, 50, 0.05)',
+      drawerActiveBackgroundColor: 'rgb(239, 172, 50)',
+        headerBackgroundContainerStyle:{
+        width: "100%",
+        height: 155,
+        alignSelf: 'center',
+      }
+      
+       }}
+       
+       drawerContent={(props) => <CustomSidebarMenu props={props} user={user}/>}
+      >
+        { user ? (<>
+          
+    <Stack.Group >
+          <Drawer.Screen name='HOME' component={Home} options={({navigation, route}) => ({
+        headerShown:false,
+        drawerIcon(props: {color: string, size: number, focused: boolean}) {
+            return(<View>
+                <Icon name="home" size={20} color={props.focused ? "#FFFFFF" : "rgb(0,0,0)"} />
+            </View>)
+        },
+        drawerLabel(props: {color: string, size: number, focused: boolean}) {
+          return(
+            <>
+            <Text style={{fontFamily:"Plus Jakarta Sans" ,color:props.focused ? "#FFFFFF" : "rgb(0,0,0)", marginHorizontal:"-15%", fontSize:16, fontWeight:"bold"}}>HOME</Text>
+          </>
+          )
+        }         
+       })}/>
+
+
+
+<Drawer.Screen name='ACCOMODATION' component={Accomodation} options={({navigation, route}) => ({
+            headerShown:false,
+            drawerIcon(props: {color: string, size: number, focused: boolean}) {
+              return(<View>
+                  <FontAwesome5 name="hotel" size={18} color={props.focused ? "#FFFFFF" : "rgb(0,0,0)"} />
+              </View>)
+          },
+          drawerLabel(props: {color: string, size: number, focused: boolean}) {
+            return(
+              <>
+              <Text style={{fontFamily:"Plus Jakarta Sans", color:props.focused ? "#FFFFFF" : "rgb(0,0,0)", marginHorizontal:"-15%", fontSize:16, fontWeight:"bold"}}>ACCOMODATION</Text>
+            </>
+            )
+          } 
+           })}/>
+
+
+
+<Drawer.Screen name='BOOKING HISTORY' component={Booking} options={({navigation, route}) => ({
+            headerShown:false,
+            drawerIcon(props: {color: string, size: number, focused: boolean}) {
+              return(<View>
+                  <Entypo name="back-in-time" size={20} color={props.focused ? "#FFFFFF" : "rgb(0,0,0)"} />
+              </View>)
+          },
+          drawerLabel(props: {color: string, size: number, focused: boolean}) {
+            return(
+              <>
+              <Text style={{fontFamily:"Plus Jakarta Sans", color:props.focused ? "#FFFFFF" : "rgb(0,0,0)", marginHorizontal:"-15%", fontSize:16, fontWeight:"bold"}}>BOOKING HISTORY</Text>
+            </>
+            )
+          } 
+            
+           })}/>
+
+        <Drawer.Screen name='SPECIAL PACKAGES' component={Special} options={({navigation, route}) => ({
+            headerShown:false,
+            drawerIcon(props: {color: string, size: number, focused: boolean}) {
+              return(<View>
+                  <MaterialIcons name="folder-special" size={20} color={props.focused ? "#FFFFFF" : "rgb(0,0,0)"} />
+              </View>)
+          },
+          drawerLabel(props: {color: string, size: number, focused: boolean}) {
+            return(
+              <>
+              <Text style={{fontFamily:"Plus Jakarta Sans", color:props.focused ? "#FFFFFF" : "rgb(0,0,0)", marginHorizontal:"-15%", fontSize:16, fontWeight:"bold"}}>SPECIAL PACKAGES</Text>
+            </>
+            )
+          } 
+           })}/>
+
+
+            <Drawer.Screen name='ACCOUNT' component={Account} options={({navigation, route}) => ({
+            headerShown:false,
+            drawerIcon(props: {color: string, size: number, focused: boolean}) {
+              return(<View>
+                  <FontAwesome5 name="user-alt" size={20} color={props.focused ? "#FFFFFF" : "rgb(0,0,0)"} />
+              </View>)
+          },
+          drawerLabel(props: {color: string, size: number, focused: boolean}) {
+            return(
+              <>
+              <Text style={{fontFamily:"Plus Jakarta Sans", color:props.focused ? "#FFFFFF" : "rgb(0,0,0)", marginHorizontal:"-15%", fontSize:16, fontWeight:"bold"}}>ACCOUNT</Text>
+            </>
+            )
+          } 
+          })}
+          />
+</Stack.Group>
+        </>) : (<>
+    <Stack.Group >
+       <Drawer.Screen name='Onboarding' component={Onboarding} options={({navigation, route}) => ({
+>>>>>>> Stashed changes
         headerShown:false,
        })}/>
        <Stack.Screen name='Onboarding3' component={Onboarding3} options={({navigation, route}) => ({
@@ -62,10 +326,20 @@ export default function App () {
        <Stack.Screen name='Signup' component={Signup} options={({navigation, route}) => ({
         headerShown: false
        })} />
+<<<<<<< Updated upstream
        <Stack.Screen name='Home' component={Home} options={({navigation, route}) => ({
         headerShown:false
        })}/>
       </Stack.Navigator>
+=======
+       </Stack.Group>
+       </>
+        )}
+    {/* <Stack.Group >
+      
+    </Stack.Group> */}
+      </Drawer.Navigator>
+>>>>>>> Stashed changes
     </NavigationContainer>
     
     

@@ -29,7 +29,13 @@ export default function Signin({navigation}) {
         </View>
         <View style={{alignSelf:"center",width:"100%", backgroundColor:"#FFFFFF", flexDirection:"column"}}>
         <Text style={{alignSelf:"flex-start", fontSize:14, fontFamily:"inter", fontWeight:"600", color:'#000000', marginVertical:"3%", marginHorizontal:"9%"}}>Email</Text>  
+<<<<<<< Updated upstream
        <View style={{display:"flex", backgroundColor:"lightgrey", alignSelf:"center", width:"90%", borderRadius: 30, height:50}}>
+=======
+       <View style={{display:"flex", backgroundColor:"lightgrey", alignSelf:"center", width:"90%", borderRadius: 30, height:50 }}>
+
+
+>>>>>>> Stashed changes
        <TextInput placeholder='Email' style={{alignSelf:"flex-start", width:"80%", marginHorizontal:"5%"}} 
          onBlur={(email) => {
             if (!validateEmail(email)) {
@@ -79,7 +85,11 @@ export default function Signin({navigation}) {
             <TouchableOpacity
               activeOpacity={0.9} 
                   onPress={() => { return navigation.navigate('Signup')}}>
+<<<<<<< Updated upstream
             <Text style={{alignSelf:"center", fontSize:14, fontFamily:"inter", fontWeight:"700", color:'rgb(239, 172, 50)'}}>I DON'T HAVE AN ACCOUNT</Text>                
+=======
+            <Text style={{alignSelf:"center", fontSize:14, fontFamily:"Plus Jakarta Sans", fontWeight:"700", color:'rgb(239, 172, 50)', marginVertical:"5%"}}>I DON'T HAVE AN ACCOUNT</Text>                
+>>>>>>> Stashed changes
            </TouchableOpacity>
             </View>
         </ScrollView>

@@ -53,6 +53,7 @@ export default function Signup ({navigation}) {
                   style={{alignSelf: "center", backgroundColor:"rgb(239, 172, 50)", width:"90%", height:50, opacity:3 ,justifyContent:"center", marginVertical:"3%", borderRadius:30,}}>
                       <Text style={{alignSelf:"center", color:"#FFFFFF", fontWeight:"bold", fontStyle:"inter", fontSize:14}}>SIGN UP</Text>
               </TouchableOpacity>
+<<<<<<< Updated upstream
           <View style={{ width:"90%", alignSelf:"center", justifyContent:"center", }}>
            <Text style={{alignSelf:"center", fontSize:14, fontFamily:"inter", fontWeight:"100", color:'#000000'}}>or continue using</Text>                
            <View style={{alignSelf:"center", flexDirection:"row", justifyContent:"space-between", width:"50%", marginVertical:"5%"}}>
@@ -70,6 +71,8 @@ export default function Signup ({navigation}) {
                       </TouchableOpacity>
               </View>
           </View>
+=======
+>>>>>>> Stashed changes
           <TouchableOpacity
               activeOpacity={0.9} 
                   onPress={() => { return navigation.navigate('Signin')}}>

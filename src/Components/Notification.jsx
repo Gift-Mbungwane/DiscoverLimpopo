@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
+<<<<<<< Updated upstream:src/pages/Components/Notification.jsx
 export default function Notification({isVisible, color}) {
+=======
+export default function Notification({isVisible, isMessage, color}) {
+
+
+>>>>>>> Stashed changes:src/Components/Notification.jsx
     const [modalVisible, setModalVisible] = useState(isVisible);
     const [colorChange, setColor] = useState(color);
 
+<<<<<<< Updated upstream:src/pages/Components/Notification.jsx
     useEffect(() => {
         setTimeout(() => {
          setModalVisible(false);
@@ -12,6 +19,13 @@ export default function Notification({isVisible, color}) {
 
         
     }, [modalVisible])
+=======
+
+
+    // useEffect(() => {
+       
+    // }, [modalVisible])
+>>>>>>> Stashed changes:src/Components/Notification.jsx
 
     return (
       <View style={styles.centeredView}>
@@ -45,6 +59,7 @@ export default function Notification({isVisible, color}) {
       </View>
   )
 }
+<<<<<<< Updated upstream:src/pages/Components/Notification.jsx
 
 const styles = StyleSheet.create({
     centeredView: {
@@ -89,3 +104,5 @@ const styles = StyleSheet.create({
       textAlign: "center"
     }
   });
+=======
+>>>>>>> Stashed changes:src/Components/Notification.jsx
